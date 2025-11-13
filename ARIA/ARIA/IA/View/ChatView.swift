@@ -82,5 +82,11 @@ struct ChatView: View {
         }
         .animation(.easeInOut, value: viewModel.messages)
         .animation(.easeInOut, value: viewModel.isProcessing)
+        .sheet(isPresented: $viewModel.scanRoomViewIsPresented) {
+                    RoomScanView { room in
+                        viewModel.capturedRoom = room
+                        viewModel.scanRoomViewIsPresented = false
+                    }
+                }
     }
 }
